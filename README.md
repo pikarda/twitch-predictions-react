@@ -1,5 +1,7 @@
 # twitch-predictions
 
+You can try it here https://pikarda-predictions.web.app/
+
 Twitch predictions widget to show prediction on the screen.
 
 ## When prediction is active it looks like:
@@ -17,3 +19,4 @@ Twitch predictions widget to show prediction on the screen.
 ## When prediction is canceled it appears for 10 seconds:
 
 ![canceled](https://user-images.githubusercontent.com/25252682/230795851-5c0c381d-7502-469a-a150-3aa90aa3ccb4.gif)
+
