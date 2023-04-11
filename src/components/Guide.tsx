@@ -2,6 +2,7 @@ import { Global } from "@emotion/react";
 import regular from "../assets/ShantellSans-Regular.ttf";
 import bold from "../assets/ShantellSans-Bold.ttf";
 import italic from "../assets/ShantellSans-Italic.ttf";
+import { clientId } from "../../public/config";
 
 const Guide = () => {
   return (
@@ -59,11 +60,13 @@ const Guide = () => {
           Generate Custom Scope Token
         </h2>
         <a
-          css={{ fontFamily: "Shantell-Sans-Italic", fontSize: "23px" }}
-          href="https://twitchtokengenerator.com/"
-          target="_blank"
+          href={
+            "https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=" +
+            clientId +
+            "&redirect_uri=http://localhost:5173/predictions&scope=channel%3Aread%3Apredictions&state=c3ab8aa609ea11e793ae92361f002671"
+          }
         >
-          Twitch Token Generator
+          Connect with Twitch
         </a>
         <p>Only “channel:read:predictions” scope is REQUIRED!</p>
         <div

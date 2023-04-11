@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { redirect, useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 
 import Active from "./status/Active";
@@ -11,6 +11,7 @@ import { FetchData } from "../api-requests/interfaces";
 
 import getPredictions from "../api-requests/twitch-api";
 import Guide from "./Guide";
+import { clientId } from "../../public/config";
 
 const DUMMY_DATA: FetchData = {
   title: "",
@@ -22,6 +23,7 @@ const DUMMY_DATA: FetchData = {
 };
 
 const Prediction = () => {
+  const navigate = useNavigate();
   const [data, setData] = useState<FetchData>(DUMMY_DATA);
   const [status, setStatus] = useState("");
   const [activeNotAllowed, setActiveNotAlloved] = useState(false);
@@ -32,32 +34,38 @@ const Prediction = () => {
 
   const [searchParams] = useSearchParams();
 
-  const userName = searchParams.get("username");
-  const clientId = searchParams.get("clientID");
+  const clientIdParam = searchParams.get("clientID");
   const auth = searchParams.get("auth");
+  const authHash = document.location.hash.split("&")[0].split("=")[1];
 
-  if (!userName || !clientId || !auth) {
+  if (!authHash && (clientIdParam === null || auth === null)) {
     return <Guide />;
   }
 
   useEffect(() => {
+    if (authHash) {
+      navigate("/predictions?clientID=" + clientId + "&auth=" + authHash);
+    }
     const apiCall = async () => {
       try {
-        const predictionData = await getPredictions(userName, clientId, auth);
-        setData(predictionData);
-        setStatus(predictionData.status);
+        if (typeof clientIdParam === "string" && typeof auth === "string") {
+          const predictionData = await getPredictions(clientIdParam, auth);
+          setData(predictionData);
+          setStatus(predictionData.status);
+        }
       } catch (error: any) {
         setError(error);
       }
     };
 
-    apiCall();
-    const timeout = setInterval(apiCall, 1000);
-
-    return () => {
-      clearInterval(timeout);
-    };
-  }, []);
+    if (!authHash && (clientIdParam !== null || auth !== null)) {
+      apiCall();
+      const timeout = setInterval(apiCall, 1000);
+      return () => {
+        clearInterval(timeout);
+      };
+    }
+  }, [authHash]);
 
   const switchAllowActive = (bool: boolean) => {
     setActiveNotAlloved(bool);

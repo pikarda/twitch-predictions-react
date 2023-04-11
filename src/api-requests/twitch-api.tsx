@@ -1,25 +1,21 @@
 import { FetchData } from "./interfaces";
+import { clientId } from "../../public/config";
 
-export const getId = async (userName: string) => {
-  const response = await fetch("https://api.twitch.tv/helix/users?login=" + userName, {
+export const getId = async (auth: string) => {
+  const response = await fetch("https://api.twitch.tv/helix/users", {
     headers: {
-      "Authorization": "Bearer f8t2yesaze7ma6eb77o69ql1p34cwi",
-      "Client-Id": "gp762nuuoqcoxypju8c569th9wz7q5",
+      "Authorization": "Bearer " + auth,
+      "Client-Id": clientId,
     },
   });
   const data = await response.json();
   return data.data[0].id;
 };
 
-const getPredictions = async (
-  userName: string,
-  clientId: string,
-  auth: string,
-  PredictionsAmount: number = 1
-) => {
+const getPredictions = async (clientId: string, auth: string, PredictionsAmount: number = 1) => {
   const response = await fetch(
     "https://api.twitch.tv/helix/predictions?broadcaster_id=" +
-      (await getId(userName)) +
+      (await getId(auth)) +
       "&first=" +
       PredictionsAmount,
     {
