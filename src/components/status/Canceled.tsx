@@ -33,7 +33,7 @@ const Canceled = ({
   return (
     <div css={fadeClass || initialOpacity} style={{ width: barWidth + "px" }}>
       <h2 css={title}>{data.title} </h2>
-      <p css={time}>Prediction Caceled</p>
+      <p css={time}>Prediction Canceled</p>
       <Outcomes status={statusTimeouted} winner={data.winning_outcome_id} data={data.outcomes} />
     </div>
   );

@@ -52,6 +52,7 @@ const Prediction = () => {
           const predictionData = await getPredictions(clientIdParam, auth);
           setData(predictionData);
           setStatus(predictionData.status);
+          setError("");
         }
       } catch (error: any) {
         setError(error);

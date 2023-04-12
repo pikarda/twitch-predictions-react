@@ -57,7 +57,7 @@ const Guide = () => {
         }}
       >
         <h2 css={{ fontFamily: "Shantell-Sans-Bold", fontSize: "30px", paddingTop: "30px" }}>
-          Generate Custom Scope Token
+          Connect with Twitch
         </h2>
         <a
           href={
@@ -68,7 +68,7 @@ const Guide = () => {
         >
           Connect with Twitch
         </a>
-        <p>Only “channel:read:predictions” scope is REQUIRED!</p>
+        {/* <p>Only “channel:read:predictions” scope is REQUIRED!</p>
         <div
           css={{
             display: "flex",
@@ -107,7 +107,7 @@ const Guide = () => {
         </p>
         <p>Then copy the link.</p>
 
-        <p css={{ paddingBottom: "30px" }}>In OBS add new Browser ⇒ use this link as URL.</p>
+        <p css={{ paddingBottom: "30px" }}>In OBS add new Browser ⇒ use this link as URL.</p> */}
       </div>
     </>
   );
