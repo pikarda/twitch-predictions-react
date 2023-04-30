@@ -43,18 +43,6 @@ export const global = css([
     ":root": {
       lineHeight: "1.5",
       fontWeight: "400",
-
-      // colorScheme: "light dark",
-      // color: "rgba(255, 255, 255, 0.87)",
-      // backgroundColor: "#242424",
     },
   },
 ]);
-
-// body {
-//   margin: 0;
-//   display: flex;
-//   place-items: center;
-//   min-width: 320px;
-//   min-height: 100vh;
-// }

@@ -36,7 +36,7 @@ const Circle = ({ points, biggerPoints, color, outcomeNumber, divSize }: Points)
     percents = "0%";
   }
   if (points > 0) {
-    percents = (points / biggerPoints) * 100 + "%";
+    percents = ((points / biggerPoints) * 100).toFixed(0) + "%";
   }
 
   return (
