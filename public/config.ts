@@ -1,6 +1,6 @@
 // app token
-const clientId = "7bltc2lqw7w36unk4j4a4q8zbcilau";
-const secret = "3ulaipep6es12k4199je6rp6ivklk6";
+const clientId = "___";
+const secret = "___";
 
 //interface
 const barWidth = 500;
